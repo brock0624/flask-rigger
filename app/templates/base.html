@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>这是计划页面</h1>
+<img src="{{ url_for('static', filename='uploads/default.jpg') }}">
+{% block main1 %}{% endblock %}
+{% block main2 %}{% endblock %}
+<form action="{{ url_for('main.view_carriage') }}" method="get" >
+    <input type="text" maxlength="6" name="carriage_num" placeholder="请输入车号">
+    <button type="submit">查找车号get</button>
+</form>
+<form action="{{ url_for('main.view_carriage') }}" method="post" >
+    <input type="text" maxlength="6" name="carriage_num" placeholder="请输入车号">
+    <button type="submit">查找车号post</button>
+</form>
+<form action="{{ url_for('main.view_plan') }}" method="get">
+    <input type="text" maxlength="8" name="plan_date" placeholder="请输入日期">
+    <button type="submit">查找日期get</button>
+</form>
+<form action="{{ url_for('main.view_plan') }}" method="post">
+    <input type="text" maxlength="8" name="plan_date" placeholder="请输入日期">
+    <button type="submit">查找日期post</button>
+</form>
+</body>
+</html>
