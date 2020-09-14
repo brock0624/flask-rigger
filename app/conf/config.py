@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+from datetime import datetime, timedelta
 
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 
@@ -22,14 +23,33 @@ class Config:
     # 调度
     # 调度器开关
     SCHEDULER_API_ENABLED = True
+    SCHEDULER_API_PREFIX = '/schedule'
     SCHEDULER_TIMEZONE = 'Asia/Shanghai'
     JOBS = [
+        # date 一次性任务，当系统启动时，该任务执行一次
         {
-            'id': 'job_1',
-            'func': 'app.sche.run_tasks:task_func',
-            'args': '5',
+            'id': 'job_date',
+            'func': 'app.sche.run_tasks:task_date',
+            'args': (1, 'job_date'),
+            'next_run_time': datetime.now() + timedelta(seconds=10)
+        },
+        # interval 循环间隔任务
+        {
+            'id': 'job_interval',
+            'func': 'app.sche.run_tasks:task_interval',
+            'args': (2, 'job_interval'),
             'trigger': 'interval',
             'seconds': 50  # 每隔50秒执行一次
+        },
+        # cron 循环定时任务
+        {
+            'id': 'job_cron',
+            'func': 'app.sche.run_tasks:task_cron',
+            'args': (3, 'job_cron'),
+            'trigger': {
+                'type': 'cron',
+                'second': '5'
+            }
         }
     ]
     # 持久化配置
