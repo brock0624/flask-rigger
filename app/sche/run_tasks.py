@@ -1,27 +1,14 @@
 # -*- coding: utf-8 -*-
-from datetime import datetime
+from .tasks import task_func
+from apscheduler.triggers.cron import CronTrigger  # 可以很友好的支持添加一个crontab表达式
 from flask import current_app
 
 
-def task_func(task_id):
-    """业务逻辑"""
-    # 发邮件、写诗、画画 -> 爱干啥干啥
-    print('task_func')
+def run_task():
+    # 从数据库中初始化定时任务
+    current_app.logger.info("从数据库中初始化定时任务")
+    pass
 
 
-def task_date(task_id, task_type):
-    msg = "{task_id}-{task_type}-{date}".format(task_id=task_id, task_type=task_type,
-                                                date=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-    print(msg)
-
-
-def task_interval(task_id, task_type):
-    msg = "{task_id}-{task_type}-{date}".format(task_id=task_id, task_type=task_type,
-                                                date=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-    print(msg)
-
-
-def task_cron(task_id, task_type):
-    msg = "{task_id}-{task_type}-{date}".format(task_id=task_id, task_type=task_type,
-                                                date=datetime.now().strftime('%Y-%m-%d %H:%M:%S'))
-    print(msg)
+# 最重要的，这样当__init__.py创建app时加载这个文件，就会执行添加历史任务啦！
+run_task()

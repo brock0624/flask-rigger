@@ -40,8 +40,7 @@ def config_scheduler(app):
     @app.before_first_request
     def load_tasks():
         # 开启任务
-        # from app.sche import run_tasks
-        pass
+        from app.sche import run_tasks
 
 
 def config_admin(app):

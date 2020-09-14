@@ -29,14 +29,14 @@ class Config:
         # date 一次性任务，当系统启动时，该任务执行一次
         {
             'id': 'job_date',
-            'func': 'app.sche.run_tasks:task_date',
+            'func': 'app.sche.tasks:task_date',
             'args': (1, 'job_date'),
             'next_run_time': datetime.now() + timedelta(seconds=10)
         },
         # interval 循环间隔任务
         {
             'id': 'job_interval',
-            'func': 'app.sche.run_tasks:task_interval',
+            'func': 'app.sche.tasks:task_interval',
             'args': (2, 'job_interval'),
             'trigger': 'interval',
             'seconds': 50  # 每隔50秒执行一次
@@ -44,7 +44,7 @@ class Config:
         # cron 循环定时任务
         {
             'id': 'job_cron',
-            'func': 'app.sche.run_tasks:task_cron',
+            'func': 'app.sche.tasks:task_cron',
             'args': (3, 'job_cron'),
             'trigger': {
                 'type': 'cron',
