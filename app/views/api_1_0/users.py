@@ -2,9 +2,10 @@
 from flask_restful import Resource, fields, marshal_with, reqparse, abort
 from email_validator import validate_email as valid_email
 from app.models import User
-from app.code import custom_abord,generate_response,ResponseCode
+from app.code import custom_abord, generate_response, ResponseCode
 
 abort = custom_abord
+
 
 def email(email_str):
     """Return email_str if valid, raise an exception in other case."""
@@ -31,21 +32,22 @@ def email(email_str):
 # )
 
 user_fields = {
+    'id': fields.Integer,
+    'username': fields.String,
+    'email': fields.String,
+    'last_login_at': fields.String,
+    'current_login_at': fields.String,
+    'last_login_ip': fields.String,
+    'current_login_ip': fields.String,
+    'login_count': fields.Integer(default=0),
+    'active': fields.Boolean,
+    'confirmed_at': fields.String,
+    'roles': fields.List(fields.Nested({
         'id': fields.Integer,
-        'username': fields.String,
-        'email': fields.String,
-        'last_login_at': fields.String,
-        'current_login_at': fields.String,
-        'last_login_ip': fields.String,
-        'current_login_ip': fields.String,
-        'login_count': fields.Integer(default=0),
-        'active': fields.Boolean,
-        'confirmed_at': fields.String,
-        'roles': fields.List(fields.Nested({
-            'id': fields.Integer,
-            'name': fields.String
-        }))
-    }
+        'name': fields.String
+    }))
+}
+
 
 class UsersView(Resource):
     @marshal_with(user_fields)
@@ -59,7 +61,6 @@ class UsersView(Resource):
         # args = parse.parse_args()
         user = User.query.filter_by(id=id).first()
         return user
-
 
 
 class UsersList(Resource):
