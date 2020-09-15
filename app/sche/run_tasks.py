@@ -6,7 +6,8 @@ from flask import current_app
 
 def run_task():
     # 从数据库中初始化定时任务
-    current_app.logger.info("从数据库中初始化定时任务")
+    # TODO 从数据库中初始化定时任务
+    current_app.logger.info("从数据库中初始化定时任务,TODO")
     pass
 
 
