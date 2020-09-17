@@ -13,7 +13,6 @@ from flask_ckeditor import CKEditor
 from flask_apscheduler import APScheduler
 from flask_admin import Admin
 from flask_redis import FlaskRedis
-from flask_restful import Api
 
 # 创建对象
 bootstrap = Bootstrap()
@@ -24,7 +23,6 @@ moment = Moment()
 security = Security()
 session = Session()
 scheduler = APScheduler()
-flask_api = Api()
 # 上传
 photos = UploadSet('photos', IMAGES)
 # 调试工具
@@ -54,7 +52,6 @@ def config_extensions(app):
     toolbar.init_app(app)
     # 注册APScheduler
     scheduler.init_app(app)
-    flask_api.init_app(app)
     redis_client.init_app(app)
 
     admin.init_app(app)
@@ -66,5 +63,3 @@ def config_extensions(app):
     # configure_uploads(app, photos)
     # 设置上传文件大小
     # patch_request_class(app, size=None)
-
-

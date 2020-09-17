@@ -118,7 +118,7 @@ class Config:
 
 # 开发环境配置
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://brock:Iccc2018@zero.brock.fun/scott'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://brock:Iccc2018@zero.brock.fun/scott?charset=utf8mb4'
     # SCHEDULER_JOBSTORES = {
     #     'default': SQLAlchemyJobStore(url=SQLALCHEMY_DATABASE_URI)
     # }

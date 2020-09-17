@@ -1,14 +1,14 @@
 # -*- coding: utf-8 -*-
 from .main import main
 from .users import users
-from .api_1_0 import api_bp as api_1_0
-# from .api_1_1 import api as api_1_1
+from .apiv1 import blueprint as apiv1
+
 
 DEFAULT_BLUEPRINT = (
     (main, ''),
     (main, '/main'),
     (users, '/users'),
-    (api_1_0, '/api/v10'),
+    (apiv1, '/api/v1'),
     # (api_1_1, '/api/v11'),
 )
 
