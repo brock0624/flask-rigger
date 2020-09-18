@@ -11,6 +11,12 @@ class Codes(db.Model):
     type = db.Column(db.String(20))
     version = db.Column(db.Integer)
     active = db.Column(db.Boolean())
+    # revision 乐观锁
+    # created_by 创建人
+    # created_time 创建时间
+    # updated_by 更新人
+    # updated_time 更新时间
+    # memo 备注
 
     def to_dict(self):
         dict = {c.code_value: getattr(self, c.code_value, None) for c in self.__table__.columns}

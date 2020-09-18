@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-from flask_restplus import Namespace, Resource, fields
+from flask_restplus import Namespace, Resource, fields, marshal
 
 # from app.models import Codes
 # from app.code import custom_abord, generate_response, ResponseCode
 # from app.utils.common import query_to_dict
 
 # 定义命名空间
+from app.utils import info_tool
+
 ns = Namespace('codes', description='Codes related operations')
 
 code = ns.model('Code', {
@@ -34,7 +36,7 @@ class COdeList(Resource):
 
 @ns.route('/<int:id>')
 @ns.param('id', 'The code identifier')
-# @ns.response(404, 'Code not found')
+@ns.response(404, 'Code not found')
 class Code(Resource):
     @ns.doc('get_code')
     @ns.marshal_with(code)
@@ -43,7 +45,21 @@ class Code(Resource):
         for code in CODES:
             if code['id'] == id:
                 return code
-        # ns.abort(404)
+        ns.abort(404)
+
+
+@ns.route('/test/<int:id>')
+@ns.param('id', 'The code identifier')
+# @ns.response(404, 'Code not found')
+class Code(Resource):
+    @ns.doc('get_code')
+    def get(self, id, resource_fields=code):
+        '''获取单个code项，并允许删除操作'''
+        for code in CODES:
+            if code['id'] == id:
+                dic = marshal(code, resource_fields)
+                return info_tool.get_success_dic(dic)
+        return info_tool.get_error_dic(1001, 'not code')
 
 # class StageCode(Resource):
 #     def get(self):
