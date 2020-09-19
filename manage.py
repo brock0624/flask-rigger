@@ -18,7 +18,7 @@ def hello():
     print('hello world')
 
 @manager.option('-n', '--name', dest='name', help='Your name', default='world')
-@manager.option('-u', '--url', dest='url', default='www.csdn.com')
+@manager.option('-u', '--url', dest='url', default='zero.brock.fun')
 def test(name, url):
     'hello world or hello <setting name>'
     print('hello', name)

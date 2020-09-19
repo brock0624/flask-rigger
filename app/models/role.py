@@ -5,7 +5,7 @@ from app.extensions import db
 
 
 class Role(db.Model, RoleMixin):
-    __tablename__ = 'role'
+    __tablename__ = 's_role'
     id = db.Column(db.Integer(), primary_key=True)
     name = db.Column(db.String(80), unique=True)
     description = db.Column(db.String(255))

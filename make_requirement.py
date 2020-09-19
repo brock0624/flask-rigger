@@ -10,8 +10,8 @@ print(project_root)
 if platform.system() == 'Linux':
     command = sys.executable + ' -m pip freeze > ' + project_root + '/requirements.txt'
 if platform.system() == 'Windows':
-    # command = '"' + sys.exec_prefix + '\Scripts\pip" freeze > ' + project_root + '\\requirements.txt'
-    command = '"' + sys.exec_prefix + '\Scripts\pipreqs" . --encoding=utf-8 --force '
+    command = '"' + sys.exec_prefix + '\Scripts\pip" freeze > ' + project_root + '\\requirements.txt'
+    # command = '"' + sys.exec_prefix + '\Scripts\pipreqs" . --encoding=utf-8 --force '
 
 # # 拼接生成requirements命令s
 print(command)

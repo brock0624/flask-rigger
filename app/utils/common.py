@@ -29,7 +29,7 @@ def html_unescape(raw_str):
     return html.unescape(raw_str)
 
 
-## 键值对字符串转JSON字符串
+# 键值对字符串转JSON字符串
 def kvstr_to_jsonstr(kvstr):
     kvstr = urldecode(kvstr)
     kvstr_list = kvstr.split('&')

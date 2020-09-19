@@ -2,6 +2,7 @@
 from .main import main
 from .users import users
 from .apiv1 import blueprint as apiv1
+from .apiv2 import blueprint as apiv2
 
 
 DEFAULT_BLUEPRINT = (
@@ -9,7 +10,7 @@ DEFAULT_BLUEPRINT = (
     (main, '/main'),
     (users, '/users'),
     (apiv1, '/api/v1'),
-    # (api_1_1, '/api/v11'),
+    (apiv2, '/api/v2'),
 )
 
 

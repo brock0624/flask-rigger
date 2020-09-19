@@ -5,9 +5,10 @@ from flask_restplus import Api
 # from .users import UsersView, UsersList
 # from .codes import StageCode
 from .codes import ns as codes
+from .todos import ns as todos
 
 # 创建蓝本对象
-blueprint = Blueprint('api', __name__)
+blueprint = Blueprint('apiv1', __name__)
 flask_api = Api(blueprint,
                 title='flask_rigger apis',
                 version='1.0',
@@ -17,3 +18,4 @@ flask_api = Api(blueprint,
 # flask_api.add_resource(UsersList, '/userslist')
 # flask_api.add_resource(StageCode, '/codes')
 flask_api.add_namespace(codes)
+flask_api.add_namespace(todos)

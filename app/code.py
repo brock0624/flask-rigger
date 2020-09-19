@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*- 
 from flask_restplus import abort
-import  datetime
+import datetime
 
 
 class ResponseCode:
-    code_success = 200  # 凡是成功都用
+    CODE_SUCCESS = 200  # 凡是成功都用
+    CODE_CREATED = 201  # 已创建
+    CODE_DELETED = 204  # 已删除
     CODE_NO_PARAM = 400  # 参数错误
     CODE_NOT_LOGIN = 401  # 未认证
     CODE_FORBIDDEN = 403  # 没权限
@@ -12,7 +14,9 @@ class ResponseCode:
     CODE_SERVER_ERROE = 500  # 服务器错误
 
     msg = {
-        code_success: "success",
+        CODE_SUCCESS: "success",
+        CODE_CREATED: "create success",
+        CODE_DELETED: "delete success",
         CODE_NO_PARAM: "params error",
         CODE_NOT_LOGIN: "not auth",
         CODE_FORBIDDEN: "permission denied",
@@ -21,7 +25,9 @@ class ResponseCode:
     }
 
 
-def generate_response(data=None, message=ResponseCode.msg[ResponseCode.code_success], code=ResponseCode.code_success):
+def generate_response(data=None, message=None, code=ResponseCode.CODE_SUCCESS):
+    if message is None:
+        message = ResponseCode.msg[code]
     return {
         'message': message,
         'code': code,
