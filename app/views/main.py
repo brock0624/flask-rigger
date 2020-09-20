@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import os
 from flask_security import login_required
 from flask import Blueprint, render_template, current_app, redirect, url_for, flash, request, render_template_string
 

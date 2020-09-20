@@ -14,8 +14,5 @@ flask_api = Api(blueprint,
                 version='1.0',
                 description='这是注释', )
 
-# flask_api.add_resource(UsersView, '/users/<int:id>')
-# flask_api.add_resource(UsersList, '/userslist')
-# flask_api.add_resource(StageCode, '/codes')
 flask_api.add_namespace(codes)
 flask_api.add_namespace(todos)
