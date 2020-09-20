@@ -118,34 +118,34 @@ class Config:
 
 # 开发环境配置
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://brock:Iccc2018@zero.brock.fun/scott?charset=utf8mb4'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://test:test123@localhost/scott?charset=utf8mb4'
     # SCHEDULER_JOBSTORES = {
     #     'default': SQLAlchemyJobStore(url=SQLALCHEMY_DATABASE_URI)
     # }
     # 发邮件 配置
     MAIL_SERVER = 'smtp.qq.com'
-    MAIL_USERNAME = 'haoyuganghyg@qq.com'
+    MAIL_USERNAME = 'test@qq.com'
     MAIL_PASSWORD = 'miborlqplwsibddf'
 
     # Redis
-    REDIS_URL = "redis://:Iccc2018@zero.brock.fun:6379/0"
+    REDIS_URL = "redis://:test123@localhost:6379/0"
 
     # cache
-    CACHE_REDIS_HOST = 'zero.brock.fun'
+    CACHE_REDIS_HOST = 'localhost'
     CACHE_REDIS_PORT = 6379
-    CACHE_REDIS_PASSWORD = 'Iccc2018'
+    CACHE_REDIS_PASSWORD = 'test123'
     CACHE_REDIS_DB = 0
     CACHE_TYPE = 'redis'
 
 
 # 测试环境配置
 class TestConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:pzl123456@localhost/test-database'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:test123@localhost/test-database'
 
 
 # 生产环境
 class PrdConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:pzl123456@localhost/product-database'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://root:test123@localhost/product-database'
 
 
 # 生成一个字典，用来根据字符串找到对应的配置类。
