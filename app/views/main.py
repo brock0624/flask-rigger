@@ -9,7 +9,8 @@ main = Blueprint('main', __name__)
 @main.route('/')
 @login_required
 def admin():
-    return '<a href="/admin/">Click me to get to Admin!</a>'
+    # return '<a href="/admin/">Click me to get to Admin!</a>'
+    return render_template('index.html')
 
 
 @main.route('/base')

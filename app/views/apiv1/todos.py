@@ -1,9 +1,14 @@
 # -*- coding: utf-8 -*-
 import random
 
-from flask_restplus import Namespace, Resource, fields, marshal
+from flask_restplus import Namespace, Resource, fields, marshal, reqparse
 
 # 定义命名空间
+from json2html import json2html
+
+from app.utils.code import generate_response, ResponseCode
+from app.utils.email import send_mail
+
 ns = Namespace('todos', description='TODO operations')
 
 todo = ns.model('Todo', {
@@ -11,11 +16,6 @@ todo = ns.model('Todo', {
     'task': fields.String(required=True, description='The task details'),
 
 })
-
-
-class RandomNumber(fields.Raw):
-    def output(self, key, obj):
-        return random.random()
 
 
 class TodoDAO(object):
@@ -93,3 +93,21 @@ class Todo(Resource):
     def put(self, id):
         '''更新id指定的task'''
         return DAO.update(id, ns.payload)
+
+
+@ns.route('/sendmail')
+class TodoListSendMail(Resource):
+    '''获取所有todos元素，并进行邮件提醒'''
+
+    @ns.doc('send_mail_todos')
+    @ns.param('usermail', '收件人邮箱,多人以","分隔')
+    def post(self, resource_fields=todo):
+        '''获取所有todos元素，并进行邮件提醒'''
+        parser = reqparse.RequestParser()
+        parser.add_argument('usermail', required=True, help='收件人邮箱不能为空')
+        args = parser.parse_args()
+        usermail = args["usermail"]
+        dic = marshal(DAO.todos, resource_fields)
+        todos = json2html.convert(json=dic)
+        send_mail(usermail.split(","), "Today's Todos!", "email/todos", todos=todos)
+        return generate_response(data=dic, code=ResponseCode.CODE_SUCCESS)

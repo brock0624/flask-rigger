@@ -6,7 +6,12 @@ from flask_mail import Message
 
 def async_send_mail(app, msg):
     with app.app_context():
-        mail.send(msg)
+        try:
+            mail.send(msg)
+        except:
+            current_app.logger.info("邮件： {subject},收件人: {user} 发送失败".format(subject=msg.subject, user=msg.recipients))
+        else:
+            current_app.logger.info("邮件： {subject},收件人: {user} 发送成功".format(subject=msg.subject, user=msg.recipients))
 
 
 # 异步发送邮件
