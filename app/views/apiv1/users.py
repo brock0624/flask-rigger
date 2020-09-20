@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
-from flask_restplus import Resource, fields, marshal_with, reqparse, abort
+from flask_restplus import Resource, fields, marshal_with, reqparse
 from email_validator import validate_email as valid_email
 from app.models import User
-from app.code import custom_abord, generate_response, ResponseCode
+from app.utils.code import custom_abord, generate_response, ResponseCode
 
 abort = custom_abord
 

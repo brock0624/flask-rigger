@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-from flask_restplus import Namespace, Resource, fields, marshal
+from flask_restplus import Namespace, Resource, fields
 from app.extensions import db
 from app.models import Codes
 # from app.code import custom_abord, generate_response, ResponseCode
 # from app.utils.common import query_to_dict
-from app.code import generate_response, ResponseCode
 
 # 定义命名空间
 ns = Namespace('codes', description='Codes related operations')

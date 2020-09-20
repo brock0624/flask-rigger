@@ -2,7 +2,7 @@
 from flask_restplus import Namespace, Resource, fields, marshal
 
 # 定义命名空间
-from app.code import generate_response, ResponseCode
+from app.utils.code import generate_response, ResponseCode
 
 ns = Namespace('todos', description='TODO operations')
 
