@@ -11,8 +11,8 @@ from app.extensions import db
 class User(db.Model, UserMixin):
     __tablename__ = 's_user'
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(255), unique=True)
-    username = db.Column(db.String(255))
+    email = db.Column(db.String(50), unique=True)
+    username = db.Column(db.String(50))
     password = db.Column(db.String(255))
     last_login_at = db.Column(db.DateTime())
     current_login_at = db.Column(db.DateTime())

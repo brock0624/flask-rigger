@@ -72,8 +72,8 @@ INSERT INTO `s_roles_users` VALUES ('1', '2');
 DROP TABLE IF EXISTS `s_user`;
 CREATE TABLE `s_user` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `username` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `username` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `password` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
   `last_login_at` datetime DEFAULT NULL,
   `current_login_at` datetime DEFAULT NULL,
