@@ -49,10 +49,9 @@ def config_admin(app):
     admin.add_view(AdminModelView(Codes, db.session))
 
     # redis
-    rediscli = RedisCliView(Redis(host=app.config.get('CACHE_REDIS_HOST'), port=app.config.get('CACHE_REDIS_PORT'),
-                                  db=app.config.get('CACHE_REDIS_DB'), password=app.config.get('CACHE_REDIS_PASSWORD')))
+    redis_cli = RedisCliView(app.config.get('REDIS_CLI'))
 
-    admin.add_view(rediscli)
+    admin.add_view(redis_cli)
 
     @app.context_processor
     def security_context_processor():

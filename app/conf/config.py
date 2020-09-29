@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 import os
 from datetime import datetime, timedelta
-
+from redis import Redis
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 
 BASE_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
@@ -106,7 +106,9 @@ class Config:
 
     # session
     SESSION_TYPE = 'filesystem'
+    # 是否长期有效
     SESSION_PERMANENT = False
+    # 是否强制加盐
     SESSION_USE_SIGNER = True
     SESSION_FILE_THRESHOLD = 2
 
@@ -127,15 +129,20 @@ class DevConfig(Config):
     MAIL_USERNAME = 'test@qq.com'
     MAIL_PASSWORD = 'miborlqplwsibddf'
 
-    # Redis
-    REDIS_URL = "redis://:test123@localhost:6379/0"
-
     # cache
     CACHE_REDIS_HOST = 'localhost'
     CACHE_REDIS_PORT = 6379
     CACHE_REDIS_PASSWORD = 'test123'
     CACHE_REDIS_DB = 0
     CACHE_TYPE = 'redis'
+
+    # Redis
+    REDIS_URL = "redis://:{passwd}@{host}:{port}/{db}".format(passwd=CACHE_REDIS_PASSWORD, host=CACHE_REDIS_HOST,
+                                                              port=CACHE_REDIS_PORT, db=CACHE_REDIS_DB)
+    REDIS_CLI = Redis(host=CACHE_REDIS_HOST, port=CACHE_REDIS_PORT,
+                      db=CACHE_REDIS_DB, password=CACHE_REDIS_PASSWORD)
+    SESSION_TYPE = "redis"
+    SESSION_REDIS = REDIS_CLI
 
 
 # 测试环境配置
