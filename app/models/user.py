@@ -30,7 +30,8 @@ class User(db.Model, UserMixin):
     # # 密码字段保护
     # @property
     # def password(self):
-    #     raise AttributeError('密码是不可读属性')
+    #     pass
+    #     # raise AttributeError('密码是不可读属性')
     #
     # # 设置密码，加密存储
     # @password.setter

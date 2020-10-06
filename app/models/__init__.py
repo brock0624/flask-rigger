@@ -3,6 +3,7 @@ from flask import current_app
 from .user import User
 from .role import Role
 from .codes import Codes
+from .post import Post
 
 from app.extensions import db
 
@@ -12,6 +13,7 @@ roles_users = db.Table(
     db.Column('user_id', db.Integer(), db.ForeignKey('s_user.id')),
     db.Column('role_id', db.Integer(), db.ForeignKey('s_role.id'))
 )
+
 
 
 def init_db():

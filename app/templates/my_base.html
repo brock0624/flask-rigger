@@ -25,6 +25,7 @@
         {{ render_nav_item('admin.index', 'Admin') }}
 
     </div>
+    {% block user %}
     <ul class="nav navbar-nav navbar-right">
         {% if current_user.is_authenticated %}
         <div class="navbar-text btn-group pull-right">
@@ -37,8 +38,7 @@
                 {%- endif %}<span class="caret"></span></a>
             <ul class="dropdown-menu" role="menu">
                 <li><a href="{{ url_for('users.profile') }}">用户详情</a></li>
-                <li><a href="{{ url_for('users.profile') }}">修改密码</a></li>
-                <li><a href="{{ url_for('users.profile') }}">修改邮箱</a></li>
+                <li><a href="{{ url_for('security.change_password') }}">修改密码</a></li>
                 <li><a href="{{ url_for('users.profile') }}">修改头像</a></li>
                 <li><a href="{{ url_for('security.logout') }}">退出</a></li>
             </ul>
@@ -50,6 +50,7 @@
         {% endif %}
 
     </ul>
+    {% endblock %}
 
 </nav>
 
@@ -57,6 +58,8 @@
 <!-- Your page content -->
 {% block content %}
 
+{% endblock %}
+{% block body %}
 {% endblock %}
 
 

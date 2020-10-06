@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from .main import main
 from .users import users
+from .posts import posts
 from .apiv1 import blueprint as apiv1
 from .apiv2 import blueprint as apiv2
 
@@ -9,6 +10,7 @@ DEFAULT_BLUEPRINT = (
     (main, ''),
     (main, '/main'),
     (users, '/users'),
+    (posts, '/posts'),
     (apiv1, '/api/v1'),
     (apiv2, '/api/v2'),
 )

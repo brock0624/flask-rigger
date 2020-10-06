@@ -11,11 +11,6 @@ def index():
     return render_template('index.html')
 
 
-@main.route('/index')
-def index2():
-    return render_template('index.html')
-
-
 @main.route('/hello')
 def hello():
     return "Hello, World!"
