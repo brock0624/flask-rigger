@@ -4,10 +4,8 @@ from datetime import datetime, timedelta
 from redis import Redis
 from apscheduler.jobstores.sqlalchemy import SQLAlchemyJobStore
 
-BASE_DIR = os.path.dirname(os.path.abspath(os.path.dirname(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(os.path.dirname(__file__))))
 
-
-# BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 
 # 定义配置基类
 class Config:
@@ -27,30 +25,30 @@ class Config:
     SCHEDULER_TIMEZONE = 'Asia/Shanghai'
     JOBS = [
         # date 一次性任务，当系统启动时，该任务执行一次
-        {
-            'id': 'job_date',
-            'func': 'app.sche.tasks:task_date',
-            'args': (1, 'job_date'),
-            'next_run_time': datetime.now() + timedelta(seconds=10)
-        },
-        # interval 循环间隔任务
-        {
-            'id': 'job_interval',
-            'func': 'app.sche.tasks:task_interval',
-            'args': (2, 'job_interval'),
-            'trigger': 'interval',
-            'seconds': 50  # 每隔50秒执行一次
-        },
-        # cron 循环定时任务
-        {
-            'id': 'job_cron',
-            'func': 'app.sche.tasks:task_cron',
-            'args': (3, 'job_cron'),
-            'trigger': {
-                'type': 'cron',
-                'second': '5'
-            }
-        }
+        # {
+        #     'id': 'job_date',
+        #     'func': 'app.sche.tasks:task_date',
+        #     'args': (1, 'job_date'),
+        #     'next_run_time': datetime.now() + timedelta(seconds=10)
+        # },
+        # # interval 循环间隔任务
+        # {
+        #     'id': 'job_interval',
+        #     'func': 'app.sche.tasks:task_interval',
+        #     'args': (2, 'job_interval'),
+        #     'trigger': 'interval',
+        #     'seconds': 50  # 每隔50秒执行一次
+        # },
+        # # cron 循环定时任务
+        # {
+        #     'id': 'job_cron',
+        #     'func': 'app.sche.tasks:task_cron',
+        #     'args': (3, 'job_cron'),
+        #     'trigger': {
+        #         'type': 'cron',
+        #         'second': '5'
+        #     }
+        # }
     ]
     # 持久化配置
     SCHEDULER_EXECUTORS = {
@@ -86,9 +84,9 @@ class Config:
     SECURITY_PASSWORD_SALT = "ATGUOHAELKiubahiughaerGOJAEGj"
 
     # Flask-Security URLs, overridden because they don't put a / at the end
-    SECURITY_LOGIN_URL = "/login/"
-    SECURITY_LOGOUT_URL = "/logout/"
-    SECURITY_REGISTER_URL = "/register/"
+    SECURITY_LOGIN_URL = "/auth/login/"
+    SECURITY_LOGOUT_URL = "/auth/logout/"
+    SECURITY_REGISTER_URL = "/auth/register/"
     SECURITY_UNAUTHORIZED_VIEW = "/unauth"
 
     SECURITY_POST_LOGIN_VIEW = "/"
@@ -120,19 +118,19 @@ class Config:
 
 # 开发环境配置
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://test:test123@localhost/scott?charset=utf8mb4'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://brock:Iccc2018@zero.brock.fun/scott?charset=utf8mb4'
     # SCHEDULER_JOBSTORES = {
     #     'default': SQLAlchemyJobStore(url=SQLALCHEMY_DATABASE_URI)
     # }
     # 发邮件 配置
     MAIL_SERVER = 'smtp.qq.com'
-    MAIL_USERNAME = 'test@qq.com'
+    MAIL_USERNAME = 'haoyuganghyg@qq.com'
     MAIL_PASSWORD = 'miborlqplwsibddf'
 
     # cache
-    CACHE_REDIS_HOST = 'localhost'
+    CACHE_REDIS_HOST = 'zero.brock.fun'
     CACHE_REDIS_PORT = 6379
-    CACHE_REDIS_PASSWORD = 'test123'
+    CACHE_REDIS_PASSWORD = 'Iccc2018'
     CACHE_REDIS_DB = 0
     CACHE_TYPE = 'redis'
 
