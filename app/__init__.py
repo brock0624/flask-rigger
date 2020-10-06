@@ -6,16 +6,16 @@ from flask_admin import helpers as admin_helpers
 from flask_security import SQLAlchemyUserDatastore
 from redis import Redis
 
-from app.admin.admin_view import AdminModelView
+from app.admin.admin_view import AdminModelView, MyAdminView
 from app.admin.rediscli_view import RedisCliView
 from app.admin.users_view import UserView
-from app.conf.config import config
+from app.conf.config import config, BASE_DIR
 from app.extensions import config_extensions, scheduler, admin, db, redis_client, security
 from app.models import User, Role
 from app.models.codes import Codes
 from app.views import config_blueprint
 
-fileConfig('app/conf/log-app.conf')
+fileConfig(BASE_DIR+'/app/conf/log-app.conf')
 
 
 def get_logger(name):
@@ -52,6 +52,7 @@ def config_admin(app):
     redis_cli = RedisCliView(app.config.get('REDIS_CLI'))
 
     admin.add_view(redis_cli)
+    admin.add_view(MyAdminView(name="返回前台"))
 
     @app.context_processor
     def security_context_processor():

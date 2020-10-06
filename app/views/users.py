@@ -40,6 +40,12 @@ def logout():
     return 'user.logout'
 
 
+# 展示用户个人信息
+@users.route('/profile/')
+def profile():
+    return render_template('users/profile.html')
+
+
 @users.route('/test/')
 def test():
     session['key'] = 'test'

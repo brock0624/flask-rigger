@@ -7,15 +7,23 @@ main = Blueprint('main', __name__)
 
 
 @main.route('/')
-@login_required
-def admin():
-    # return '<a href="/admin/">Click me to get to Admin!</a>'
+def index():
     return render_template('index.html')
+
+
+@main.route('/index')
+def index2():
+    return render_template('index.html')
+
+
+@main.route('/hello')
+def hello():
+    return "Hello, World!"
 
 
 @main.route('/base')
 def base():
-    return render_template('base/base.html')
+    return render_template('my_base.html')
 
 
 @main.route('/view_plan1/')

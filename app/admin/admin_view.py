@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 from flask import abort, url_for, request, redirect
+from flask_admin import BaseView, expose
 from flask_admin.contrib import sqla
 from flask_security import current_user
+
 
 class AdminModelView(sqla.ModelView):
     def is_accessible(self):
@@ -21,3 +23,9 @@ class AdminModelView(sqla.ModelView):
             else:
                 # login
                 return redirect(url_for('security.login', next=request.url))
+
+
+class MyAdminView(BaseView):
+    @expose('/')
+    def index(self):
+        return self.render('index.html')

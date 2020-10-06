@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+    {% block head %}
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    {% block styles %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+    {% endblock %}
+
+    <title>{% block title %}{% endblock %} - Flaskr</title>
+    {% endblock %}
+</head>
+<body>
+<!--导航-->
+{% block navbar %}
+{% from 'bootstrap/nav.html' import render_nav_item %}
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="navbar-nav mr-auto">
+        {{ render_nav_item('main.index', 'Home') }}
+        {{ render_nav_item('admin.index', 'Admin') }}
+
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+        {% if current_user.is_authenticated %}
+        <div class="navbar-text btn-group pull-right">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                <i class="glyphicon glyphicon-user"></i>
+                {% if current_user.first_name -%}
+                {{ current_user.first_name }}
+                {% else -%}
+                {{ current_user.email }}
+                {%- endif %}<span class="caret"></span></a>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="{{ url_for('users.profile') }}">用户详情</a></li>
+                <li><a href="{{ url_for('users.profile') }}">修改密码</a></li>
+                <li><a href="{{ url_for('users.profile') }}">修改邮箱</a></li>
+                <li><a href="{{ url_for('users.profile') }}">修改头像</a></li>
+                <li><a href="{{ url_for('security.logout') }}">退出</a></li>
+            </ul>
+        </div>
+
+        {% else %}
+        <li><a href="{{ url_for('security.login') }}">登录</a></li>
+        <li><a href="{{ url_for('security.register') }}">注册</a></li>
+        {% endif %}
+
+    </ul>
+
+</nav>
+
+{% endblock %}
+<!-- Your page content -->
+{% block content %}
+
+{% endblock %}
+
+
+{% block scripts %}
+<!-- Optional JavaScript -->
+{{ bootstrap.load_js() }}
+{% endblock %}
+</body>
+</html>

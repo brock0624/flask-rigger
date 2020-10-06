@@ -31,7 +31,7 @@ toolbar = DebugToolbarExtension()
 ckeditor = CKEditor()
 
 # 后台管理
-admin = Admin(name='后台管理', template_mode='bootstrap3', base_template='my_master.html', )
+admin = Admin(name='后台管理', template_mode='bootstrap3', base_template='base.html', )
 
 # 缓存页面
 # cache = Cache()
