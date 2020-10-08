@@ -11,7 +11,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(os.path.dirname(__fil
 class Config:
     # 秘钥
     SECRET_KEY = os.environ.get('SECRET_KEY') or '123456'
-
     # 数据库公用配置
     # 无警告
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -84,9 +83,12 @@ class Config:
     SECURITY_PASSWORD_SALT = "ATGUOHAELKiubahiughaerGOJAEGj"
 
     # Flask-Security URLs, overridden because they don't put a / at the end
-    SECURITY_LOGIN_URL = "/auth/login/"
-    SECURITY_LOGOUT_URL = "/auth/logout/"
-    SECURITY_REGISTER_URL = "/auth/register/"
+    SECURITY_LOGIN_URL = "/login/"
+    SECURITY_LOGOUT_URL = "/logout/"
+    SECURITY_REGISTER_URL = "/register/"
+    SECURITY_CHANGE_URL = "/change/"
+    SECURITY_RESET_URL = "/reset/"
+    SECURITY_CONFIRM_URL = "/confirm/"
     SECURITY_UNAUTHORIZED_VIEW = "/unauth"
 
     SECURITY_POST_LOGIN_VIEW = "/"
@@ -95,6 +97,9 @@ class Config:
 
     # Flask-Security features
     SECURITY_REGISTERABLE = True
+    SECURITY_CHANGEABLE = True
+    SECURITY_RECOVERABLE = True
+    SECURITY_CONFIRMABLE = True
     SECURITY_SEND_REGISTER_EMAIL = False
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
@@ -118,7 +123,7 @@ class Config:
 
 # 开发环境配置
 class DevConfig(Config):
-    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://brock:Iccc2018@zero.brock.fun/scott?charset=utf8mb4'
+    SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://test:test123@zero.brock.fun/scott?charset=utf8mb4'
     # SCHEDULER_JOBSTORES = {
     #     'default': SQLAlchemyJobStore(url=SQLALCHEMY_DATABASE_URI)
     # }
